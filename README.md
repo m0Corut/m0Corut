@@ -12,6 +12,16 @@
 
 ---
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/m0Corut/m0Corut/output/cnc-dark.svg"/>
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/m0Corut/m0Corut/output/cnc-light.svg"/>
+    <img alt="My contribution graph, machined by a CNC spindle" src="https://raw.githubusercontent.com/m0Corut/m0Corut/output/cnc-dark.svg"/>
+  </picture>
+</p>
+
+---
+
 ### 🛠️ What I'm working on
 
 **KesApp** *(private, in active development)*: a browser-based parametric furniture design and manufacturing engine.

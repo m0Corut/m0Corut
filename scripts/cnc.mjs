@@ -37,6 +37,23 @@ const GY = 96;
 
 const cellCenter = (w, d) => [GX + w * PITCH + CELL / 2, GY + d * PITCH + CELL / 2];
 
+// Peck-drilling patterns inside one cell (grid units), one hole per contribution up to 9.
+// Ordered so the spindle walks a short path between holes.
+const HOLE_PATTERNS = [
+  [],
+  [[0, 0]],
+  [[-1, -1], [1, 1]],
+  [[-1, -1], [0, 0], [1, 1]],
+  [[-1, -1], [1, -1], [1, 1], [-1, 1]],
+  [[-1, -1], [1, -1], [0, 0], [1, 1], [-1, 1]],
+  [[-1, -1], [-1, 0], [-1, 1], [1, 1], [1, 0], [1, -1]],
+  [[-1, -1], [-1, 0], [-1, 1], [0, 0], [1, 1], [1, 0], [1, -1]],
+  [[-1, -1], [0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0]],
+  [[-1, -1], [0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [0, 0]],
+];
+const HOLE_STEP = 3.3;
+const MAX_HOLES = HOLE_PATTERNS.length - 1;
+
 // Serpentine (boustrophedon) facing pass over the whole sheet: down one week column,
 // up the next, like a real CNC job. Contribution days are drilled, the rest only faced.
 function toolpath(weeks) {
@@ -45,7 +62,8 @@ function toolpath(weeks) {
     const days = [...week.contributionDays];
     if (w % 2 === 1) days.reverse();
     for (const day of days) {
-      cells.push({ w, d: day.weekday, level: day.contributionCount > 0 ? LEVELS[day.contributionLevel] || 1 : 0 });
+      const level = day.contributionCount > 0 ? LEVELS[day.contributionLevel] || 1 : 0;
+      cells.push({ w, d: day.weekday, level, holes: Math.min(day.contributionCount, MAX_HOLES) });
     }
   });
   return cells;
@@ -55,7 +73,8 @@ function toolpath(weeks) {
 
 function schedule(cells, home) {
   const SPEED = 240; // px/s
-  const DWELL = 0.32;
+  const PECK = 0.17; // dwell per hole
+  const MIN_HOP = 0.05; // hop between holes of one cell
   const SPIN_UP = 0.9;
   const HOLD = 3.5;
   const FADE = 1;
@@ -64,24 +83,35 @@ function schedule(cells, home) {
   let prev = home;
   let raw = 0;
   for (const c of cells) {
-    const p = cellCenter(c.w, c.d);
-    const move = Math.hypot(p[0] - prev[0], p[1] - prev[1]) / SPEED;
-    moves.push({ c, p, move, dwell: c.level > 0 ? DWELL : 0 });
-    raw += move + (c.level > 0 ? DWELL : 0);
-    prev = p;
+    const [cx, cy] = cellCenter(c.w, c.d);
+    const offsets = c.holes > 0 ? HOLE_PATTERNS[c.holes] : [[0, 0]];
+    const stops = offsets.map(([ox, oy], i) => {
+      const p = [cx + ox * HOLE_STEP, cy + oy * HOLE_STEP];
+      const dist = Math.hypot(p[0] - prev[0], p[1] - prev[1]) / SPEED;
+      const move = i === 0 ? dist : Math.max(MIN_HOP, dist);
+      const dwell = c.holes > 0 ? PECK : 0;
+      raw += move + dwell;
+      prev = p;
+      return { p, move, dwell };
+    });
+    moves.push({ c, p: [cx, cy], stops });
   }
   const back = Math.hypot(home[0] - prev[0], home[1] - prev[1]) / SPEED;
   raw += back;
 
   // Keep the job watchable regardless of how busy the year was.
-  const scale = Math.min(Math.max(raw, 16), 34) / raw;
+  const scale = Math.min(Math.max(raw, 16), 40) / raw;
 
   let t = SPIN_UP;
   for (const m of moves) {
-    t += m.move * scale;
-    m.arrive = t;
-    t += m.dwell * scale;
-    m.leave = t;
+    for (const st of m.stops) {
+      t += st.move * scale;
+      st.arrive = t;
+      t += st.dwell * scale;
+      st.leave = t;
+    }
+    m.arrive = m.stops[0].arrive;
+    m.leave = m.stops[m.stops.length - 1].leave;
   }
   t += back * scale;
   const done = t;
@@ -141,7 +171,7 @@ function render(calendar, theme) {
   const cells = toolpath(weeks);
   const { moves, done, total, fadeAt } = schedule(cells, home);
   const drilled = moves.filter((m) => m.c.level > 0);
-  const N = drilled.length;
+  const N = drilled.reduce((sum, m) => sum + m.c.holes, 0);
 
   const out = [];
   out.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">`);
@@ -214,13 +244,13 @@ function render(calendar, theme) {
     const { c } = m;
     const x = GX + c.w * PITCH;
     const y = GY + c.d * PITCH;
-    const reveal = m.arrive + (m.leave - m.arrive) * 0.55;
-    const r = 1.4 + c.level * 0.35;
-    out.push(`<g opacity="0">`);
-    out.push(anim("opacity", [[0, 0], [reveal, 0], [reveal + 0.08, 1], [fadeAt, 1], [total, 0]], total));
-    out.push(`<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2" fill="${T.levels[c.level]}"/>`);
-    out.push(`<circle cx="${f(x + CELL / 2)}" cy="${f(y + CELL / 2)}" r="${f(r)}" fill="${T.hole}" opacity="0.85"/>`);
-    out.push(`</g>`);
+    const mid = (st) => st.arrive + (st.leave - st.arrive) * 0.55;
+    const show = (t) => anim("opacity", [[0, 0], [t, 0], [t + 0.06, 1], [fadeAt, 1], [total, 0]], total);
+    const r = c.holes === 1 ? 1.9 : c.holes <= 4 ? 1.35 : 1.05;
+    out.push(`<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2" fill="${T.levels[c.level]}" opacity="0">${show(mid(m.stops[0]))}</rect>`);
+    for (const st of m.stops) {
+      out.push(`<circle cx="${f(st.p[0])}" cy="${f(st.p[1])}" r="${r}" fill="${T.hole}" opacity="0">${show(mid(st))}</circle>`);
+    }
   }
 
   // title block
@@ -239,7 +269,7 @@ function render(calendar, theme) {
     frames.push([fadeAt, barW], [total, 0]);
     out.push(`<rect x="${barX}" y="${tb.y + 13}" width="0" height="8" rx="2" fill="${T.accent}">${anim("width", frames, total)}</rect>`);
   }
-  out.push(`<text x="${barX + barW + 12}" y="${tb.y + 21}">HOLES ${N}</text>`);
+  out.push(`<text x="${barX + barW + 12}" y="${tb.y + 21}">HOLES ${N} · 1 HOLE = 1 CONTRIBUTION (MAX ${MAX_HOLES}/DAY)</text>`);
   const fields = [
     ["PART", "contributions"],
     ["QTY", String(calendar.totalContributions)],
@@ -260,8 +290,10 @@ function render(calendar, theme) {
   // gantry (moves on X) and carriage + spindle (moves on X/Y)
   const headFrames = [[0, ...home], [0.9, ...home]];
   for (const m of moves) {
-    headFrames.push([m.arrive, ...m.p]);
-    if (m.leave > m.arrive) headFrames.push([m.leave, ...m.p]);
+    for (const st of m.stops) {
+      headFrames.push([st.arrive, ...st.p]);
+      if (st.leave > st.arrive) headFrames.push([st.leave, ...st.p]);
+    }
   }
   headFrames.push([done, ...home], [total, ...home]);
 
@@ -274,10 +306,10 @@ function render(calendar, theme) {
 
   const drill = [[0, 0], [0.9, 0]];
   const ring = [[0, 10], [0.9, 10]];
-  for (const m of drilled) {
-    const d = m.leave - m.arrive;
-    drill.push([m.arrive, 0], [m.arrive + d * 0.15, 1], [m.leave - d * 0.15, 1], [m.leave, 0]);
-    ring.push([m.arrive, 10], [m.arrive + d * 0.45, 6], [m.leave, 10]);
+  for (const st of drilled.flatMap((m) => m.stops)) {
+    const d = st.leave - st.arrive;
+    drill.push([st.arrive, 0], [st.arrive + d * 0.15, 1], [st.leave - d * 0.15, 1], [st.leave, 0]);
+    ring.push([st.arrive, 10], [st.arrive + d * 0.45, 6], [st.leave, 10]);
   }
   drill.push([total, 0]);
   ring.push([total, 10]);
@@ -314,4 +346,6 @@ mkdirSync(OUT_DIR, { recursive: true });
 for (const theme of Object.keys(THEMES)) {
   writeFileSync(`${OUT_DIR}/cnc-${theme}.svg`, render(calendar, theme));
 }
-console.log(`faced ${toolpath(calendar.weeks).length} cells, drilled ${toolpath(calendar.weeks).filter((c) => c.level > 0).length}, ${calendar.totalContributions} contributions`);
+const cells = toolpath(calendar.weeks);
+const holes = cells.reduce((sum, c) => sum + c.holes, 0);
+console.log(`faced ${cells.length} cells, drilled ${holes} holes in ${cells.filter((c) => c.holes > 0).length} cells, ${calendar.totalContributions} contributions`);

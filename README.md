@@ -67,6 +67,9 @@ production-ready output for the workshop:
 ### 📊 GitHub stats
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=m0Corut&show_icons=true&hide_border=true&count_private=true&theme=transparent" alt="GitHub stats"/>
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=m0Corut&layout=compact&hide_border=true&langs_count=8&theme=transparent&exclude_repo=Antigravity-Manager" alt="Top languages"/>
+  <img height="160" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=m0Corut&theme=transparent" alt="GitHub stats"/>
+  <img height="160" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=m0Corut&theme=transparent" alt="Most commit language"/>
+</p>
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=m0Corut&hide_border=true&background=00000000" alt="GitHub streak"/>
 </p>

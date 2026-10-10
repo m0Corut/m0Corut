@@ -15,6 +15,92 @@
 
 ---
 
+## 🛠️ Tech Stack
+
+**Backend**
+
+<p>
+  <img src="https://img.shields.io/badge/C%23-239120?style=flat-square" alt="C#"/>
+  <img src="https://img.shields.io/badge/.NET-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET"/>
+  <img src="https://img.shields.io/badge/ASP.NET_Core-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt="ASP.NET Core"/>
+  <img src="https://img.shields.io/badge/EF_Core-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt="EF Core"/>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js"/>
+  <img src="https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white" alt="Express.js"/>
+  <img src="https://img.shields.io/badge/REST_APIs-0A7C6E?style=flat-square" alt="REST APIs"/>
+  <img src="https://img.shields.io/badge/SignalR-512BD4?style=flat-square" alt="SignalR"/>
+  <img src="https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=socketdotio&logoColor=white" alt="Socket.io"/>
+  <img src="https://img.shields.io/badge/JWT_RS256-000000?style=flat-square&logo=jsonwebtokens&logoColor=white" alt="JWT RS256"/>
+</p>
+
+**Architecture**
+
+<p>
+  <img src="https://img.shields.io/badge/Microservices-0A7C6E?style=flat-square" alt="Microservices"/>
+  <img src="https://img.shields.io/badge/Event--Driven-0A7C6E?style=flat-square" alt="Event-Driven"/>
+  <img src="https://img.shields.io/badge/CQRS_·_MediatR-0A7C6E?style=flat-square" alt="CQRS · MediatR"/>
+  <img src="https://img.shields.io/badge/API_Gateway_(Ocelot)-0A7C6E?style=flat-square" alt="API Gateway (Ocelot)"/>
+  <img src="https://img.shields.io/badge/Transactional_Outbox-0A7C6E?style=flat-square" alt="Transactional Outbox"/>
+  <img src="https://img.shields.io/badge/RBAC-0A7C6E?style=flat-square" alt="RBAC"/>
+</p>
+
+**Data & Messaging**
+
+<p>
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
+  <img src="https://img.shields.io/badge/SQL_Server-CC2927?style=flat-square" alt="SQL Server"/>
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB"/>
+  <img src="https://img.shields.io/badge/MariaDB-003545?style=flat-square&logo=mariadb&logoColor=white" alt="MariaDB"/>
+  <img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white" alt="Redis"/>
+  <img src="https://img.shields.io/badge/Elasticsearch-005571?style=flat-square&logo=elasticsearch&logoColor=white" alt="Elasticsearch"/>
+  <img src="https://img.shields.io/badge/RabbitMQ-FF6600?style=flat-square&logo=rabbitmq&logoColor=white" alt="RabbitMQ"/>
+  <img src="https://img.shields.io/badge/Apache_Kafka-231F20?style=flat-square&logo=apachekafka&logoColor=white" alt="Apache Kafka"/>
+  <img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase"/>
+  <img src="https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white" alt="Prisma"/>
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black" alt="Firebase"/>
+</p>
+
+**Frontend**
+
+<p>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript"/>
+  <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React"/>
+  <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js"/>
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS"/>
+  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=flat-square&logo=framer&logoColor=white" alt="Framer Motion"/>
+  <img src="https://img.shields.io/badge/Zustand-443E38?style=flat-square" alt="Zustand"/>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3"/>
+  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white" alt="Bootstrap"/>
+</p>
+
+**Desktop, 3D & AI**
+
+<p>
+  <img src="https://img.shields.io/badge/Electron-47848F?style=flat-square&logo=electron&logoColor=white" alt="Electron"/>
+  <img src="https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=threedotjs&logoColor=white" alt="Three.js"/>
+  <img src="https://img.shields.io/badge/GSAP-88CE02?style=flat-square&logo=greensock&logoColor=black" alt="GSAP"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Whisper_·_BERT-412991?style=flat-square" alt="Whisper and BERT"/>
+</p>
+
+**DevOps & Testing**
+
+<p>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker"/>
+  <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git"/>
+  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white" alt="GitHub Actions"/>
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white" alt="AWS"/>
+  <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel"/>
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite"/>
+  <img src="https://img.shields.io/badge/Vitest-6E9F18?style=flat-square&logo=vitest&logoColor=white" alt="Vitest"/>
+  <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" alt="Playwright"/>
+  <img src="https://img.shields.io/badge/xUnit-512BD4?style=flat-square" alt="xUnit"/>
+  <img src="https://img.shields.io/badge/Testcontainers-2E7D32?style=flat-square" alt="Testcontainers"/>
+</p>
+
+---
+
 ## 🧠 About Me
 
 - 🎓 **Computer Engineering**, Bartın University
@@ -71,65 +157,13 @@ A device outside a store records spoken customer reviews; **Whisper** transcribe
 
 | Project | What it is | Stack |
 | --- | --- | --- |
+| [**hospital-microservice**](https://github.com/m0Corut/hospital-microservice) | Hospital management system: 15 .NET microservices, API gateway, event-driven messaging, live queue display, 2,800+ tests | .NET 10, RabbitMQ, Kafka, Redis, Elasticsearch, Docker |
 | [**Cyber-Snake-3D**](https://github.com/m0Corut/Cyber-Snake-3D) · [▶ play](https://m0corut.github.io/Cyber-Snake-3D/) | Cyberpunk 3D snake with combat and dynamic difficulty; hundreds of objects at 60 FPS via `InstancedMesh` | React, Three.js, Zustand |
 | [**snake-io-multiplayer**](https://github.com/m0Corut/snake-io-multiplayer) | Real-time multiplayer .io game: 30 Hz server tick, 60 FPS client sync, pathfinding AI bots | TypeScript, Socket.io, Node.js |
 | [**shadow-db**](https://github.com/m0Corut/shadow-db) | PostgreSQL proxy that anonymises sensitive data on the fly for safe development | Node.js, TCP proxy, Next.js |
 | [**keyboard-premium-landing-page**](https://github.com/m0Corut/keyboard-premium-landing-page) · [▶ live](https://keyboard-premium-landing-page.vercel.app) | Immersive landing page with physics-based interactions and real-time audio synthesis | Next.js, GSAP, Web Audio API |
 | [**devmetrics**](https://github.com/m0Corut/devmetrics) | Turns a GitHub profile into an RPG character: AI analytics, battle arena, resume generator | Next.js 15, Tailwind, Groq |
 | [**jjk-limitless-ar**](https://github.com/m0Corut/jjk-limitless-ar) · [▶ try](https://m0corut.github.io/jjk-limitless-ar/) | Web AR with real-time hand tracking | MediaPipe, Three.js |
-
----
-
-## 🛠️ Tech Stack
-
-**Frontend**
-
-<p>
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"/>
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript"/>
-  <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React"/>
-  <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js"/>
-  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS"/>
-  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=flat-square&logo=framer&logoColor=white" alt="Framer Motion"/>
-  <img src="https://img.shields.io/badge/Zustand-443E38?style=flat-square" alt="Zustand"/>
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"/>
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3"/>
-</p>
-
-**Backend & Data**
-
-<p>
-  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js"/>
-  <img src="https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white" alt="Express.js"/>
-  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
-  <img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase"/>
-  <img src="https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white" alt="Prisma"/>
-  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black" alt="Firebase"/>
-  <img src="https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=socketdotio&logoColor=white" alt="Socket.io"/>
-  <img src="https://img.shields.io/badge/REST_APIs-0A7C6E?style=flat-square" alt="REST APIs"/>
-</p>
-
-**Desktop, 3D & AI**
-
-<p>
-  <img src="https://img.shields.io/badge/Electron-47848F?style=flat-square&logo=electron&logoColor=white" alt="Electron"/>
-  <img src="https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=threedotjs&logoColor=white" alt="Three.js"/>
-  <img src="https://img.shields.io/badge/GSAP-88CE02?style=flat-square&logo=greensock&logoColor=black" alt="GSAP"/>
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/>
-  <img src="https://img.shields.io/badge/Whisper_·_BERT-412991?style=flat-square" alt="Whisper and BERT"/>
-</p>
-
-**DevOps & Tooling**
-
-<p>
-  <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git"/>
-  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white" alt="GitHub Actions"/>
-  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white" alt="AWS"/>
-  <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel"/>
-  <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite"/>
-  <img src="https://img.shields.io/badge/Vitest-6E9F18?style=flat-square&logo=vitest&logoColor=white" alt="Vitest"/>
-  <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" alt="Playwright"/>
-</p>
 
 ---
 
